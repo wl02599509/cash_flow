@@ -22,62 +22,29 @@ export default class extends Controller {
 
   }
 
-  API(){
+  api(){
 
-    // const tradeInfo = { MerchantID: "mid", TimeStamp: Date.now(), Version: 2.0, RespondType: 'JSON', MerchantOrderNo: "test0315001" + Date.now(), Amt:30, CREDIT: 1, NotifyURL: 'https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29', LoginType: 0, InstFlag: 0, ItemDesc: 'test' }
+    const tradeInfo = { MerchantID: "TWD987086921", 
+                        TimeStamp: Date.now(), 
+                        Version: 2.0, 
+                        RespondType: 'JSON', 
+                        MerchantOrderNo: "test0315001" + Date.now(), 
+                        Amt:30, 
+                        CREDIT: 1, 
+                        NotifyURL: 'https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29', LoginType: 0, 
+                        InstFlag: 0, 
+                        ItemDesc: 'test' }
       
     Rails.ajax({
-      url: '/payment/ttt',
+      url: '/payment/encode_trade_info',
       type: 'post',
-      data: data,
+      data: JSON.stringify(tradeInfo),
       success: (response) => {
-          console.log(response);
+        console.log(response);
       },
-      error: () => {
-          console("error");
+      error: (err) => {
+        console.log(err);
       }
     }); 
-
-
-    // 下面不用管
-
-    // const tradeInfo = {
-    //   MerchantID: "mid",
-    //   TimeStamp: Date.now(),
-    //   Version: 2.0,
-    //   RespondType: 'JSON',
-    //   MerchantOrderNo: "test0315001" + Date.now(),
-    //   Amt:30,
-    //   CREDIT: 1,
-    //   NotifyURL: 'https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29',
-    //   LoginType: 0,
-    //   InstFlag: 0,
-    //   ItemDesc: 'test',
-    //   }
-
-    // Rails.ajax({
-    //   url: '/payment/ttt',
-    //   type: 'POST',
-    //   data: {
-    //     MerchantID: "mid",
-    //     TimeStamp: Date.now(),
-    //     Version: 2.0,
-    //     RespondType: 'JSON',
-    //     MerchantOrderNo: "test0315001" + Date.now(),
-    //     Amt:30,
-    //     CREDIT: 1,
-    //     NotifyURL: 'https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29',
-    //     LoginType: 0,
-    //     InstFlag: 0,
-    //     ItemDesc: 'test',
-    //     },
-    //   success: (resp) => {
-    //     console.log(resp)
-    //   },
-    //   error: (err) => {
-    //     console.log(err)
-    //   }
-    // })
-
   }
 }

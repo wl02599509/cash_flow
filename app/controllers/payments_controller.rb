@@ -3,8 +3,8 @@ class PaymentsController < ApplicationController
     # render html:params
   end
 
-  def ttt
-    {"{\"MerchantID\":\"mid\",\"TimeStamp\":1661006223175,\"Version\":2,\"RespondType\":\"JSON\",\"MerchantOrderNo\":\"test03150011661006223175\",\"Amt\":30,\"CREDIT\":1,\"NotifyURL\":\"https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29\",\"LoginType\":0,\"InstFlag\":0,\"ItemDesc\":\"test\"}"=>nil}
+  def encode_trade_info
+    render json: params.keys[0].delete('{').delete('}').gsub!(/:/, '=').gsub!(/"/, '').gsub!('=//','%3A%2F%2F').gsub!('/','%2F').split(',').join('&')
   end
 
   def url_encoded_query_string
