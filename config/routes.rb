@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  resource :pay, only: [:new, :create]
+  resource :payment, only: [] do
+    get :fulfill
+    post :ttt
+  end
 end
