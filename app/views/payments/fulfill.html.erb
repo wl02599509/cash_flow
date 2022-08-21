@@ -1,14 +1,15 @@
 <h1>付費頁面</h1>
 
-<form method='post' action="https://ccore.newebpay.com/MPG/mpg_gateway" data-controller="pay" >
+<form method='post' action="https://ccore.newebpay.com/MPG/mpg_gateway" data-controller="pay" id="payment-form">
   MID: 
-  <input name="MerchantID" value="data1.MerchantID" readonly data-action="click->pay#api" ><br>
+  <input name="MerchantID" value="" readonly data-action="click->pay#api" ><br>
   Version: 
   <input name="Version" value="2.0" readonly><br>
   TradeInfo:
-  <input name="TradeInfo" value="<?=$edata1?>" readonly><br>
+  <input name="TradeInfo" value="" readonly><br>
   TradeSha:
-  <input name="TradeSha" value="<?=$hash?>" readonly><br>
+  <input name="TradeSha" value="" readonly><br>
   Amt: 30
   <input type='submit' >
 </form>
+

@@ -14,16 +14,8 @@ export default class extends Controller {
 
   connect() {
     console.log(123)
-  
-    // key = "l2Nvw3YlqoEk6G4HqRKDAYpHKZWxN4LM"
-    // iv = "gXYC1Fpliev4dtLw"
-    // mid = "MS33690061"
-    
-
   }
-
   api(){
-
     const tradeInfo = { MerchantID: "TWD987086921", 
                         TimeStamp: Date.now(), 
                         Version: 2.0, 
@@ -35,7 +27,7 @@ export default class extends Controller {
                         InstFlag: 0, 
                         ItemDesc: 'test' }
     const MerchantOrderNo = 'test0315001' + Date.now()
-      
+
     Rails.ajax({
       url: '/payment/info',
       type: 'post',
@@ -46,6 +38,6 @@ export default class extends Controller {
       error: (err) => {
         console.log(err);
       }
-    }); 
+    });
   }
 }
