@@ -1,18 +1,23 @@
 class PaymentsController < ApplicationController
+  require 'uri'
+
   def fulfill
     # render html:params
   end
 
-  def encode_trade_info
-    render json: params.keys[0].delete('{').delete('}').gsub!(/:/, '=').gsub!(/"/, '').gsub!('=//','%3A%2F%2F').gsub!('/','%2F').split(',').join('&')
+  def info
+    # render json: params.keys[0]
+    # render json: URI.encode_www_form(params.keys[0].delete('{').delete('}').gsub!(/"/, ''))
+    @url_encoded_query_string = params.keys[0].delete('{').delete('}').gsub!(/:/, '=').gsub!(/"/, '').gsub!('=//','%3A%2F%2F').gsub!('/','%2F').split(',').join('&')
+    result = 
   end
 
-  def url_encoded_query_string
-    URI.encode_www_form(info)
-  end
+  # def url_encoded_query_string
+  #   URI.encode_www_form(info)
+  # end
 
   def trade_info
-    aes_encode(url_encoded_query_string)
+    aes_encode(@url_encoded_query_string)
   end
   
   def aes_encode(string)

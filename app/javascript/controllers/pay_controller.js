@@ -34,9 +34,10 @@ export default class extends Controller {
                         NotifyURL: 'https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29', LoginType: 0, 
                         InstFlag: 0, 
                         ItemDesc: 'test' }
+    const MerchantOrderNo = 'test0315001' + Date.now()
       
     Rails.ajax({
-      url: '/payment/encode_trade_info',
+      url: '/payment/info',
       type: 'post',
       data: JSON.stringify(tradeInfo),
       success: (response) => {
