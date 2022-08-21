@@ -31,6 +31,7 @@ export default class extends Controller {
     Rails.ajax({
       url: '/payment/info',
       type: 'post',
+      contentType: "application/json",
       data: JSON.stringify(tradeInfo),
       success: (response) => {
         console.log(response);

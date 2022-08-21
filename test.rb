@@ -2,12 +2,14 @@ require 'uri'
 require 'openssl'
 h1 = {"MerchantID"=>"TWD987086921", "TimeStamp"=>"1661057390318", "Version"=>"2.0", "RespondType"=>"JSON", "MerchantOrderNo"=>"test03150011661057390318", "Amt"=>"30", "CREDIT"=>"1", "NotifyURL"=>"https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29", "LoginType"=>"0", "InstFlag"=>"0", "ItemDesc"=>"test"}
 
+h2 = "MerchantID=TWD987086921&TimeStamp=1661057390318&Version=2.0&RespondType=JSON&MerchantOrderNo=test03150011661057390318&Amt=30&CREDIT=1&NotifyURL=https%3A%2F%2Fwebhook.site%2F6a182a2c-371f-4267-a433-727d50522e29&LoginType=0&InstFlag=0&ItemDesc=test"
+
 @key = "l2Nvw3YlqoEk6G4HqRKDAYpHKZWxN4LM"
 @iv = "gXYC1Fpliev4dtLw"
 
-a1 = h1.to_a
+p a1 = h1.to_a
 
-p a2 = URI.encode_www_form(a1)
+
 
 
 def url_encoded_query_string
@@ -34,4 +36,10 @@ def add_padding(data, block_size = 32)
   data + (pad.chr * pad)
 end
 
-p aes_encode(a2)
+def info
+  # a2 = URI.encode_www_form(a1)
+  # p aes_encode(a2)
+  aes_encode("MerchantID=TWD987086921&TimeStamp=1661057390318&Version=2.0&RespondType=JSON&MerchantOrderNo=test03150011661057390318&Amt=30&CREDIT=1&NotifyURL=https%3A%2F%2Fwebhook.site%2F6a182a2c-371f-4267-a433-727d50522e29&LoginType=0&InstFlag=0&ItemDesc=test")
+end
+
+p info
