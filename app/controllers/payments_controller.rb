@@ -8,10 +8,19 @@ class PaymentsController < ApplicationController
   def fulfill
   end
 
-  def url_encoded_query_string
-    URI.encode_www_form(info)
+  def info
+    @url_encoded_query_string = params.keys[0].delete('{').delete('}').gsub!(/:/, '=').gsub!(/"/, '').gsub!('=//','%3A%2F%2F').gsub!('/','%2F').split(',').join('&')
+    
+    encode_query = aes_encode(@url_encoded_query_string)
+
+    result = sha256_encode(@key, @iv, encode_query)
+    
+    render json: result
   end
 
+  
+  private
+  #加密 step 1
   def trade_info
     aes_encode(@url_encoded_query_string)
   end
@@ -32,13 +41,13 @@ class PaymentsController < ApplicationController
     data + (pad.chr * pad)
   end
 
-  def info
-    # render json: params
-
-    @url_encoded_query_string = params.keys[0].delete('{').delete('}').gsub!(/:/, '=').gsub!(/"/, '').gsub!('=//','%3A%2F%2F').gsub!('/','%2F').split(',').join('&')
-    result = aes_encode(@url_encoded_query_string)
-    render json: result
-
+  # 加密 step 2
+  def trade_sha
+    sha256_encode(@key, @iv, encode_query)
   end
-
+  
+  def sha256_encode(key, iv, info)
+    encode_string = "HashIV=#{iv}&#{info}&HashKey=#{key}"
+    Digest::SHA256.hexdigest(encode_string).upcase
+  end
 end
