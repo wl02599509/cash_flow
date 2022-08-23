@@ -57,3 +57,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'stimulus-rails'
 gem "braintree", "~> 4.8"
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'

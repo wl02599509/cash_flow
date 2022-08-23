@@ -2,8 +2,8 @@ class PaymentsController < ApplicationController
   require 'uri'
   require 'openssl'
 
-  @key = "l2Nvw3YlqoEk6G4HqRKDAYpHKZWxN4LM"
-  @iv = "gXYC1Fpliev4dtLw"
+  @key = "TTF0Fg1QxAOejgV1FZxXgWKQlO52njrO"
+  @iv = "Cwah1NwceYk3PmKP"
 
   def fulfill
   end
@@ -11,9 +11,16 @@ class PaymentsController < ApplicationController
   def info
     @url_encoded_query_string = params.keys[0].delete('{').delete('}').gsub!(/:/, '=').gsub!(/"/, '').gsub!('=//','%3A%2F%2F').gsub!('/','%2F').split(',').join('&')
     
-    encode_query = aes_encode(@url_encoded_query_string)
+    trade_info = aes_encode(@url_encoded_query_string)
 
-    result = sha256_encode(@key, @iv, encode_query)
+    sha = sha256_encode(@key, @iv, trade_info)
+
+    result = {
+      MerchantID: 'TWD987086921',
+      TradeInfo: trade_info,
+      TradeSha: sha,
+      Version: '2.0'
+    }
     
     render json: result
   end

@@ -13,12 +13,9 @@ import Rails from "@rails/ujs"
 export default class extends Controller {
 
   connect() {
-    console.log(123)
-  }
-  api(){
     const tradeInfo = { MerchantID: "TWD987086921", 
                         TimeStamp: Date.now(), 
-                        Version: 2.0, 
+                        Version: '2.0', 
                         RespondType: 'JSON', 
                         MerchantOrderNo: "test0315001" + Date.now(), 
                         Amt:30, 
@@ -26,6 +23,7 @@ export default class extends Controller {
                         NotifyURL: 'https://webhook.site/6a182a2c-371f-4267-a433-727d50522e29', LoginType: 0, 
                         InstFlag: 0, 
                         ItemDesc: 'test' }
+
     const MerchantOrderNo = 'test0315001' + Date.now()
 
     Rails.ajax({
@@ -34,6 +32,17 @@ export default class extends Controller {
       contentType: "application/json",
       data: JSON.stringify(tradeInfo),
       success: (response) => {
+        Rails.ajax({
+          url: 'https://ccore.newebpay.com/MPG/mpg_gateway',
+          type: 'post',
+          success: (resp) => {
+            console.log(resp)
+          },
+          error: (err) => {
+            console.log(err)
+          }
+        })
+        
         console.log(response);
       },
       error: (err) => {
