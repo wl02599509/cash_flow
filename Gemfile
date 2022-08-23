@@ -58,3 +58,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'stimulus-rails'
 gem "braintree", "~> 4.8"
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+
+group 'development', 'test' do
+  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
+end
+
