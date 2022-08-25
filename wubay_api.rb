@@ -10,7 +10,7 @@ a = {
   "TotalAmount": 100,
   "TradeDesc": "test",
   "ItemName": "wubay",
-  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payments/returnpage",
+  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payment/returnpage",
   "ChoosePayment": "Credit",
   "EncryptType": 1,
 }
@@ -48,9 +48,9 @@ api_params = {
   "TotalAmount": 100,
   "TradeDesc": "test",
   "ItemName": "wubay",
-  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payments/returnpage",
+  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payment/returnpage",
   "ChoosePayment": "Credit",
-  "CheckMacValue": "AC99825928F1A247F9BB29B3C3514CEB03E8CC04F10980867E83EA5781702104", 
+  "CheckMacValue": "E2B22F3564FF1C46F357F5FC87CA84A38340D042B690FA35F264ABDC000E145C", 
   "EncryptType": 1,
 }
 
