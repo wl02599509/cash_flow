@@ -2,13 +2,13 @@
 
 <form method='post' action="https://ccore.newebpay.com/MPG/mpg_gateway" data-controller="pay" id="payment-form">
   MID: 
-  <input name="MerchantID" value="" readonly data-action="click->pay#api" ><br>
+  <input name="MerchantID" value="" readonly data-action="click->pay#api" data-pay-target="merchant"><br>
   Version: 
-  <input name="Version" value="2.0" readonly><br>
+  <input name="Version" value="" readonly data-pay-target="version"><br>
   TradeInfo:
-  <input name="TradeInfo" value="" readonly><br>
+  <input name="TradeInfo" value="" readonly data-pay-target="tradeinfo"><br>
   TradeSha:
-  <input name="TradeSha" value="" readonly><br>
+  <input name="TradeSha" value="" readonly data-pay-target="tradesha"><br>
   Amt: 30
   <input type='submit' >
 </form>

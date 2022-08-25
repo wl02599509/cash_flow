@@ -1,6 +1,5 @@
 require "active_support/core_ext/integer/time"
 
-config.hosts << "4548-61-220-182-115.jp.ngrok.io"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -10,7 +9,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.hosts << "4548-61-220-182-115.jp.ngrok.io"
+  config.hosts << "f62a-61-220-182-115.jp.ngrok.io"
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -24,7 +23,6 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.hosts << "4548-61-220-182-115.jp.ngrok.io"
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
@@ -35,7 +33,6 @@ Rails.application.configure do
 
     config.cache_store = :null_store
 
-    config.hosts << "4548-61-220-182-115.jp.ngrok.io"
   end
 
   
@@ -92,8 +89,5 @@ Braintree::Configuration.merchant_id = "2n74qzhsxxvvrsxc"
 Braintree::Configuration.public_key = "6f8qvkwsjfzzy454"
 Braintree::Configuration.private_key = "9a4486bf833f06dd729bfd35120b96ba"
 
-config.hosts << "4548-61-220-182-115.jp.ngrok.io"
 
 
-
-rails new <project_name>

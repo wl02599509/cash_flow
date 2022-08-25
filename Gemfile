@@ -63,3 +63,5 @@ group 'development', 'test' do
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
 end
 
+
+gem "net-smtp", "~> 0.3.1"

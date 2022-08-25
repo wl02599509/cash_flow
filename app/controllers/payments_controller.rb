@@ -4,11 +4,15 @@ class PaymentsController < ApplicationController
 
   @key = "TTF0Fg1QxAOejgV1FZxXgWKQlO52njrO"
   @iv = "Cwah1NwceYk3PmKP"
+  def returnpage
+  end
 
   def fulfill
   end
 
   def info
+    # debugger
+
     @url_encoded_query_string = params.keys[0].delete('{').delete('}').gsub!(/:/, '=').gsub!(/"/, '').gsub!('=//','%3A%2F%2F').gsub!('/','%2F').split(',').join('&')
     
     trade_info = aes_encode(@url_encoded_query_string)
@@ -16,10 +20,10 @@ class PaymentsController < ApplicationController
     sha = sha256_encode(@key, @iv, trade_info)
 
     result = {
-      MerchantID: 'TWD987086921',
+      MerchantID: "TWD987086921",
       TradeInfo: trade_info,
       TradeSha: sha,
-      Version: '2.0'
+      Version: "2.0"
     }
     
     render json: result
@@ -35,8 +39,8 @@ class PaymentsController < ApplicationController
   def aes_encode(string)
     cipher = OpenSSL::Cipher::AES256.new(:CBC)
     cipher.encrypt
-    cipher.key = "l2Nvw3YlqoEk6G4HqRKDAYpHKZWxN4LM"
-    cipher.iv = "gXYC1Fpliev4dtLw"
+    cipher.key = "TTF0Fg1QxAOejgV1FZxXgWKQlO52njrO"
+    cipher.iv = "Cwah1NwceYk3PmKP"
     cipher.padding = 0
     padding_data = add_padding(string)
     encrypted = cipher.update(padding_data) + cipher.final
@@ -58,3 +62,6 @@ class PaymentsController < ApplicationController
     Digest::SHA256.hexdigest(encode_string).upcase
   end
 end
+
+
+
