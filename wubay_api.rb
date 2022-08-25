@@ -1,20 +1,18 @@
-# 用官網提供的參數驗證加密結果與官方是否一致、過程是否正確
-
 require 'uri'
 require 'openssl'
 require 'CGI'
 
 a = {
-  "TradeDesc": "促銷方案", 
-  "PaymentType": "aio", 
-  "MerchantTradeDate": "2013/03/12 15:30:23", 
-  "MerchantTradeNo": "ecpay20130312153023", 
-  "MerchantID": 2000132, 
-  "ReturnURL": "https://www.ecpay.com.tw/receive.php",
-  "ItemName": "Apple iphone 7 手機殼", 
-  "TotalAmount": 1000, 
-  "ChoosePayment": "ALL", 
-  "EncryptType": 1
+  "MerchantID": 3002607,
+  "MerchantTradeNo": "50Wubay",
+  "MerchantTradeDate": "2013/03/12 15:30:23",
+  "PaymentType": "aio",
+  "TotalAmount": 100,
+  "TradeDesc": "test",
+  "ItemName": "wubay",
+  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payments/returnpage",
+  "ChoosePayment": "Credit",
+  "EncryptType": 1,
 }
 
 # 1.由A到Z的順序並轉換為 qurey string
@@ -40,7 +38,21 @@ def sha256_encode(trade_info)
 end
 
 p sha256_encode(d)
- 
+
+
+api_params = {
+  "MerchantID": 3002607,
+  "MerchantTradeNo": "50Wubay",
+  "MerchantTradeDate": "2013/03/12 15:30:23",
+  "PaymentType": "aio",
+  "TotalAmount": 100,
+  "TradeDesc": "test",
+  "ItemName": "wubay",
+  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payments/returnpage",
+  "ChoosePayment": "Credit",
+  "CheckMacValue": "AC99825928F1A247F9BB29B3C3514CEB03E8CC04F10980867E83EA5781702104", 
+  "EncryptType": 1,
+}
 
 
 
