@@ -1,10 +1,18 @@
 class PaymentsController < ApplicationController
   require 'uri'
   require 'openssl'
+  skip_before_action :verify_authenticity_token
 
   @key = "TTF0Fg1QxAOejgV1FZxXgWKQlO52njrO"
   @iv = "Cwah1NwceYk3PmKP"
+
+
+
   def returnpage
+    respond_to do |format|
+      format.html
+      format.json { render json: "1|OK" }
+    end
   end
 
   def fulfill

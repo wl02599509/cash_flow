@@ -8,7 +8,7 @@ a = {
   "TradeDesc": "促銷方案", 
   "PaymentType": "aio", 
   "MerchantTradeDate": "2013/03/12 15:30:23", 
-  "MerchantTradeNo": "ecpay20220828014", 
+  "MerchantTradeNo": "ecpay202203333", 
   "MerchantID": 2000132, 
   "ReturnURL": "https://www.ecpay.com.tw/receive.php",
   "ItemName": "Apple iphone 7 手機殼", 

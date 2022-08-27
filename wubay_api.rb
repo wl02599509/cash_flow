@@ -2,25 +2,26 @@ require 'uri'
 require 'openssl'
 require 'CGI'
 
-a = {
-  "MerchantID": 3002607,
-  "MerchantTradeNo": "50Wubay",
-  "MerchantTradeDate": "2013/03/12 15:30:23",
-  "PaymentType": "aio",
-  "TotalAmount": 100,
-  "TradeDesc": "test",
-  "ItemName": "wubay",
-  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payment/returnpage",
-  "ChoosePayment": "Credit",
-  "EncryptType": 1,
+params = {
+  "TradeDesc": "促銷方案", 
+  "PaymentType": "aio", 
+  "MerchantTradeDate": "2013/03/12 15:30:23", 
+  "MerchantTradeNo": "ecpay20220828020", 
+  "MerchantID": 3002607, 
+  "ReturnURL": "https://f25a-103-3-192-33.jp.ngrok.io/payment/returnpage",
+  "ItemName": "Apple iphone 7 手機殼", 
+  "TotalAmount": 1000, 
+  "ChoosePayment": "ALL", 
+  "IgnorePayment": "WebATM#ATM#CVS#BARCODE",
+  "EncryptType": 1
 }
 
 # 1.由A到Z的順序並轉換為 qurey string
-b = URI.encode_www_form(a.to_a.sort!)
+b = URI.encode_www_form(params.to_a.sort!)
 #本機 ChoosePayment=ALL&EncryptType=1&ItemName=Apple+iphone+7+%E6%89%8B%E6%A9%9F%E6%AE%BC&MerchantID=2000132&MerchantTradeDate=2013%2F03%2F12+15%3A30%3A23&MerchantTradeNo=ecpay20130312153023&PaymentType=aio&ReturnURL=https%3A%2F%2Fwww.ecpay.com.tw%2Freceive.php&TotalAmount=1000&TradeDesc=%E4%BF%83%E9%8A%B7%E6%96%B9%E6%A1%88
 
 # 2.前後加 Key 跟 IV
-c = "HashKey=5294y06JbISpM5x9&" + b + "&HashIV=v77hoKGq4kWxNNIS"
+c = "HashKey=pwFHCqoQZGmho4w6&" + b + "&HashIV=EkRm7iFT261dpevs"
 #本機 HashKey=5294y06JbISpM5x9&ChoosePayment=ALL&EncryptType=1&ItemName=Apple+iphone+7+%E6%89%8B%E6%A9%9F%E6%AE%BC&MerchantID=2000132&MerchantTradeDate=2013%2F03%2F12+15%3A30%3A23&MerchantTradeNo=ecpay20130312153023&PaymentType=aio&ReturnURL=https%3A%2F%2Fwww.ecpay.com.tw%2Freceive.php&TotalAmount=1000&TradeDesc=%E4%BF%83%E9%8A%B7%E6%96%B9%E6%A1%88&HashIV=v77hoKGq4kWxNNIS
 
 # 找到問題： Apple iphone 7 的 + 在官網流程裡一直都是 + 沒有被換掉
@@ -40,19 +41,19 @@ end
 p sha256_encode(d)
 
 
-api_params = {
-  "MerchantID": 3002607,
-  "MerchantTradeNo": "50Wubay",
-  "MerchantTradeDate": "2013/03/12 15:30:23",
-  "PaymentType": "aio",
-  "TotalAmount": 100,
-  "TradeDesc": "test",
-  "ItemName": "wubay",
-  "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payment/returnpage",
-  "ChoosePayment": "Credit",
-  "CheckMacValue": "E2B22F3564FF1C46F357F5FC87CA84A38340D042B690FA35F264ABDC000E145C", 
-  "EncryptType": 1,
-}
+# api_params = {
+#   "MerchantID": 3002607,
+#   "MerchantTradeNo": "50Wubay",
+#   "MerchantTradeDate": "2013/03/12 15:30:23",
+#   "PaymentType": "aio",
+#   "TotalAmount": 100,
+#   "TradeDesc": "test",
+#   "ItemName": "wubay",
+#   "RuturnURL": "https://f62a-61-220-182-115.jp.ngrok.io/payment/returnpage",
+#   "ChoosePayment": "Credit",
+#   "CheckMacValue": "E2B22F3564FF1C46F357F5FC87CA84A38340D042B690FA35F264ABDC000E145C", 
+#   "EncryptType": 1,
+# }
 
 
 
