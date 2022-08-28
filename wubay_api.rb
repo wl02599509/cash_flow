@@ -26,20 +26,12 @@ c = "HashKey=pwFHCqoQZGmho4w6&" + b + "&HashIV=EkRm7iFT261dpevs"
 
 # 找到問題： Apple iphone 7 的 + 在官網流程裡一直都是 + 沒有被換掉
 
-# 進行 URL encode 並轉小寫
-d = (CGI.escape c).downcase
-d.gsub!(/%25/, '%').gsub!(/%2b/, '+')
+# 3.進行 URL encode 並轉小寫
+d = (CGI.escape c).downcase.gsub!(/%25/, '%').gsub!(/%2b/, '+')
 
 #本機hashkey%3d5294y06jbispm5x9%26choosepayment%3dall%26encrypttype%3d1%26itemname%3dapple+iphone+7+%e6%89%8b%e6%a9%9f%e6%ae%bc%26merchantid%3d2000132%26merchanttradedate%3d2013%2f03%2f12+15%3a30%3a23%26merchanttradeno%3decpay20130312153023%26paymenttype%3daio%26returnurl%3dhttps%3a%2f%2fwww.ecpay.com.tw%2freceive.php%26totalamount%3d1000%26tradedesc%3d%e4%bf%83%e9%8a%b7%e6%96%b9%e6%a1%88%26hashiv%3dv77hokgq4kwxnnis
 
-
-def sha256_encode(trade_info)
-  encode_string = trade_info
-  Digest::SHA256.hexdigest(encode_string).upcase
-end
-
-p sha256_encode(d)
-
+p  Digest::SHA256.hexdigest(d).upcase
 
 # api_params = {
 #   "MerchantID": 3002607,
