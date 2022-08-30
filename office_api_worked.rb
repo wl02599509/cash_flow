@@ -42,7 +42,20 @@ end
 
 p sha256_encode(d)
 
- 
+# {
+#   "TradeDesc": "促銷方案", 
+#   "PaymentType": "aio", 
+#   "MerchantTradeDate": "2013/03/12 15:30:23", 
+#   "MerchantTradeNo": "ecpay202203333", 
+#   "MerchantID": 2000132, 
+#   "ReturnURL": "https://www.ecpay.com.tw/receive.php",
+#   "ItemName": "Apple iphone 7 手機殼", 
+#   "TotalAmount": 1000, 
+#   "ChoosePayment": "ALL", 
+#   "IgnorePayment": "WebATM#ATM#CVS#BARCODE",
+#   "CheckMacValue": "E17DCCC6D31E9A4A90C7BCF3F6B419EF4224AD8B003363C7670283319CF01622"
+#   "EncryptType": 1
+# }
 
 
 
